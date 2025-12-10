@@ -1,0 +1,12 @@
+# Dependências de Segurança/Sniffing
+scapy
+colorama
+
+# Dependências de Machine Learning/Data Science
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+imbalanced-learn
+joblib

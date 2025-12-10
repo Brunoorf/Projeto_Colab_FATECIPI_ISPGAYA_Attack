@@ -1,0 +1,15 @@
+# Arquivos de Sistema/Ambiente
+.DS_Store
+.ipynb_checkpoints/
+
+# Pacotes e Logs do Python
+__pycache__/
+*.pyc
+venv/
+.vscode/
+
+# Arquivos Gerados/Grandes
+*.pcap
+*.pcapng
+*.xlsx
+# best_random_forest_final.joblib

@@ -1,0 +1,193 @@
+/* public/styles.css */
+/*
+	Ficheiro de estilos do tema "NASA Retro" para o portal 3I/ATLAS.
+	Objetivo: Melhorar apenas o aspeto visual (cores, tipografia, layout e ornamentos),
+	sem alterar qualquer lógica de aplicação.
+
+	Autores: Miguel Magalhães e Alexandre Marques
+	Projeto: COIL — ISPGAYA (2025) | Ambiente educativo de cibersegurança
+	Nota: Comentários explicam a função de cada secção e das principais propriedades.
+*/
+
+/* Color palette and theme tokens */
+:root {
+	--nasa-blue: #0b3d91;
+	--nasa-red: #fc3d21;
+	--nasa-white: #f5f7fb;
+	--nasa-ink: #0a0c18;   /* mais escuro para maior contraste */
+	--nasa-mid: #0d1b3f;   /* azul NASA profundo */
+	--nebula-blue: #5b72ff;
+	--glow: 0 0 8px rgba(252, 61, 33, 0.4), 0 0 18px rgba(11, 61, 145, 0.35);
+}
+
+/* Typography */
+@media (prefers-reduced-motion: no-preference) {
+	.twinkle { animation: twinkle 6s ease-in-out infinite; }
+}
+
+@keyframes twinkle {
+	0%, 100% { opacity: 0.6; }
+	50% { opacity: 1; }
+}
+
+/* Global layout and starfield background */
+html, body { height: 100%; }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+	/* Softer, non-repeating cosmic backdrop to avoid moiré/noise */
+	background:
+		radial-gradient(1200px 800px at 50% -20%, rgba(91,114,255,0.10), transparent 60%),
+		radial-gradient(1000px 600px at 80% 120%, rgba(252,61,33,0.06), transparent 65%),
+		linear-gradient(180deg, var(--nasa-ink), var(--nasa-mid) 60%, var(--nasa-ink));
+	background-attachment: fixed, fixed, fixed;
+	color: var(--nasa-white);
+	margin: 0;
+	padding: 20px;
+}
+
+/* Vignette suave e nebulosa adicional sem markup extra */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	background:
+		radial-gradient(900px 700px at 15% 10%, rgba(91,114,255,0.10), transparent 60%),
+		radial-gradient(1100px 800px at 85% 85%, rgba(252,61,33,0.05), transparent 65%),
+		radial-gradient(1400px 900px at 50% 120%, rgba(0,0,0,0.35), transparent 55%);
+}
+
+/* Header */
+header {
+	background: linear-gradient(120deg, rgba(11,61,145,0.95), rgba(30,35,64,0.95));
+	color: #fff;
+	padding: 12px 16px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+	border: 1px solid rgba(255,255,255,0.08);
+}
+
+header .brand {
+	display: flex; gap: 12px; align-items: center;
+}
+
+.brand img.logo { width: 40px; height: 40px; border-radius: 50%; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.brand .title { font-weight: 700; letter-spacing: 0.3px; }
+.brand .subtitle { font-size: 12px; opacity: 0.85; }
+
+.user a { color:#fff; text-decoration:none; font-weight: 600; }
+.user { font-weight: 600; }
+
+/* Main content container */
+main {
+	margin-top: 20px;
+	background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+	border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Retro grid flourish */
+.retro-grid {
+	position: relative;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.retro-grid::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+										linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+	background-size: 24px 24px, 24px 24px;
+	mask-image: linear-gradient(transparent, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0.9));
+	pointer-events: none;
+}
+
+/* Cards and sections */
+.card {
+	background: rgba(255,255,255,0.04);
+	border: 1px solid rgba(255,255,255,0.08);
+	border-radius: 10px;
+	padding: 16px;
+	margin: 16px 0;
+	box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.prose p { margin: 0.6em 0 0.8em; }
+.prose ul { margin: 0.4em 0 0.8em 1.2em; }
+.stack > * + * { margin-top: 12px; }
+
+.badge {
+	display: inline-flex; align-items: center; gap: 8px;
+	padding: 6px 10px; border-radius: 999px;
+	background: rgba(11,61,145,0.2);
+	border: 1px solid rgba(255,255,255,0.12);
+	color: #fff;
+}
+.badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--nasa-red); box-shadow: var(--glow); }
+
+.accent { color: var(--nasa-red); }
+.muted { opacity: 0.85; }
+
+h1, h2, h3 { margin: 0.4em 0 0.5em; text-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+h1 { font-size: 28px; }
+h2 { font-size: 22px; color: #fff; }
+h3 { font-size: 18px; color: #e7ecff; }
+p { color: #e0e4f5; line-height: 1.6; }
+ul { color: #dee3f7; }
+
+/* Login box (form) */
+.login-box {
+	max-width: 420px;
+	margin: 40px auto;
+	padding: 24px;
+	background: rgba(255,255,255,0.04);
+	border-radius: 12px;
+	border: 1px solid rgba(255,255,255,0.08);
+	box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+label input { width:100%; padding:10px 12px; margin-top:6px; margin-bottom:12px; box-sizing:border-box; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.25); color: #fff; }
+
+button { padding:10px 14px; background: var(--nasa-red); color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight: 700; letter-spacing: 0.3px; box-shadow: var(--glow); }
+button:hover { filter: brightness(1.05); }
+
+.error { color:#ffb4b4; font-weight:600; }
+
+/* NASA header banner and inclusivity ribbon */
+.nasa-ribbon {
+	display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px;
+	background: linear-gradient(135deg, rgba(252,61,33,0.15), rgba(11,61,145,0.25));
+	border: 1px solid rgba(255,255,255,0.12);
+}
+.nasa-ribbon img { width: 28px; height: 28px; border-radius: 50%; }
+.nasa-ribbon strong { color: #fff; }
+
+/* Figure component */
+.figure { padding: 0; overflow: hidden; }
+.figure img { display:block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 28px rgba(0,0,0,0.45); }
+.figure figcaption { font-size: 13px; color: #d3dbff; margin-top: 10px; }
+.figure figcaption .label { font-weight: 700; color: #fff; margin-right: 4px; }
+
+/* Hero area on login */
+.hero {
+	text-align:center;
+	padding: 18px 12px 0;
+}
+.hero .lockup { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.hero .lockup img { width: 56px; height:56px; border-radius:50%; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+.hero .eyebrow { font-size:12px; letter-spacing:2px; text-transform:uppercase; opacity:0.9; color:#c7d3ff; }
+.hero h1 { margin-top:6px; font-size:24px; }
+
+/* Content typography helpers */
+.section { margin: 18px 0; }
+.section .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 1.6px; color: #c7d3ff; }
+.section .lead { font-size: 15px; color: #e9edff; }
+
+/* Footer note */
+.footnote { font-size: 12px; opacity: 0.75; }
